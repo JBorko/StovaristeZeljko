@@ -18,6 +18,9 @@ namespace Podaci
         public BankovniNalozi()
         {
             this.Adrese = new HashSet<Adrese>();
+            this.Firme = new HashSet<Firme>();
+            this.Prodavci = new HashSet<Prodavci>();
+            this.Radnici = new HashSet<Radnici>();
         }
     
         public int Id { get; set; }
@@ -25,14 +28,14 @@ namespace Podaci
         public string NazivVlasnika { get; set; }
         public string NazivBanke { get; set; }
         public string Drzava { get; set; }
-        public string Firma { get; set; }
-        public string Radnik { get; set; }
-        public Nullable<int> Kupac { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Adrese> Adrese { get; set; }
-        public virtual Firme Firme { get; set; }
-        public virtual Kupci Kupci { get; set; }
-        public virtual Radnici Radnici { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Firme> Firme { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prodavci> Prodavci { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Radnici> Radnici { get; set; }
     }
 }

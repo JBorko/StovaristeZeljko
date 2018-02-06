@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[StatistikeProdaje]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+    [Prodao] CHAR(13) NOT NULL, 
+    [Kupac] INT NOT NULL, 
+    [Dio] INT NOT NULL, 
+    [Automobil] INT NOT NULL, 
+    [Cijena] INT NOT NULL, 
+    [Rabat] INT NULL,
+	CONSTRAINT SP_DIO_FK FOREIGN KEY (Dio) REFERENCES Dijelovi(id),
+	CONSTRAINT SP_AUTOMOBIL_FK FOREIGN KEY (Automobil) REFERENCES Automobili(id),
+	CONSTRAINT SP_CIJENA_FK FOREIGN KEY (Cijena) REFERENCES Cijene(id),
+	CONSTRAINT SP_RABAT_FK FOREIGN KEY (Rabat) REFERENCES Rabati(id)
+)

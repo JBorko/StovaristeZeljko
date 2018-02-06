@@ -18,6 +18,7 @@ namespace Podaci
         public Automobili()
         {
             this.Dijelovi = new HashSet<Dijelovi>();
+            this.StatistikeProdaje = new HashSet<StatistikeProdaje>();
         }
     
         public int Id { get; set; }
@@ -31,17 +32,20 @@ namespace Podaci
         public int Kilometraza { get; set; }
         public string KodMotora { get; set; }
         public string Napomena { get; set; }
-        public Nullable<int> Prodavac { get; set; }
+        public int Prodavac { get; set; }
         public decimal KupovnaCijena { get; set; }
-        public int Cijena { get; set; }
+        public string Unosilac { get; set; }
+        public System.DateTime DatumUnosa { get; set; }
     
         public virtual BrojeviVrata BrojeviVrata { get; set; }
-        public virtual Cijene Cijene { get; set; }
         public virtual MarkeAutomobila MarkeAutomobila { get; set; }
         public virtual Prodavci Prodavci { get; set; }
+        public virtual Radnici Radnici { get; set; }
         public virtual TipoviMjenjaca TipoviMjenjaca { get; set; }
         public virtual VrsteGoriva VrsteGoriva { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dijelovi> Dijelovi { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StatistikeProdaje> StatistikeProdaje { get; set; }
     }
 }

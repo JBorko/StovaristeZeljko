@@ -1,0 +1,67 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[Automobili].[Cijena] is being dropped, data loss could occur.
+       The column [dbo].[Automobili].[DatumUnosa] on table [dbo].[Automobili] must be added, but the column has no default
+         value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue
+         you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of
+         smart-defaults as a deployment option.
+       The column [dbo].[BankovniNalozi].[Firma] is being dropped, data loss could occur.
+       The column [dbo].[BankovniNalozi].[Kupac] is being dropped, data loss could occur.
+       The column [dbo].[BankovniNalozi].[Radnik] is being dropped, data loss could occur.
+       The column [dbo].[Dijelovi].[Prodavac] is being dropped, data loss could occur.
+       The column [dbo].[Dijelovi].[SrNaziv] is being dropped, data loss could occur.
+       The column [dbo].[Dijelovi].[DatumUnosa] on table [dbo].[Dijelovi] must be added, but the column has no default value
+         and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must
+         either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults
+         as a deployment option.
+       The type for column VrstaDijela in table [dbo].[Dijelovi] is currently  VARCHAR (50) NOT NULL but is being changed to 
+         INT NOT NULL. Data loss could occur.
+
+** User actions
+     Rename
+       [dbo].[Dijelovi].[VrstaDijela] (Column)
+     Drop
+       [dbo].[AUTOMOBIL_CIJENA_FK] (Foreign Key)
+       [dbo].[BANKOVI_NALOG_FIRMA_FK] (Foreign Key)
+       [dbo].[BANKOVI_NALOG_KUPAC_FK] (Foreign Key)
+       [dbo].[BANKOVI_NALOG_RADNIK_FK] (Foreign Key)
+       [dbo].[DIO_PRODAVAC_FK] (Foreign Key)
+     Alter
+       [dbo].[Automobili] (Table)
+       [dbo].[BankovniNalozi] (Table)
+       [dbo].[Dijelovi] (Table)
+       [dbo].[Firme] (Table)
+       [dbo].[Prodavci] (Table)
+       [dbo].[Radnici] (Table)
+     Create
+       [dbo].[VrsteDijelova] (Table)
+       [dbo].[DIO_VRSTA_DIJELA_FK] (Foreign Key)
+       [dbo].[FIRMA_BANK_NALOG] (Foreign Key)
+       [dbo].[PRODAVAC_BANK_NALOG] (Foreign Key)
+       [dbo].[RADNIK_BANK_NALOG] (Foreign Key)
+
+** Supporting actions
+     Drop
+       [dbo].[AUTOMOBIL_PRODAVAC_FK] (Foreign Key)
+     Create
+       [dbo].[AUTOMOBIL_PRODAVAC_FK] (Foreign Key)
+
+The object [stovariste_dev_db] exists in the target, but it will not be dropped even though you selected the 'Generate drop statements for objects that are in the target database but that are not in the source' check box.
+The object [stovariste_dev_db_log] exists in the target, but it will not be dropped even though you selected the 'Generate drop statements for objects that are in the target database but that are not in the source' check box.
+The column [dbo].[Automobili].[Cijena] is being dropped, data loss could occur.
+The column [dbo].[Automobili].[DatumUnosa] on table [dbo].[Automobili] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The column Prodavac on table [dbo].[Automobili] must be changed from NULL to NOT NULL. If the table contains data, the ALTER script may not work. To avoid this issue, you must add values to this column for all rows or mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The column [dbo].[BankovniNalozi].[Firma] is being dropped, data loss could occur.
+The column [dbo].[BankovniNalozi].[Kupac] is being dropped, data loss could occur.
+The column [dbo].[BankovniNalozi].[Radnik] is being dropped, data loss could occur.
+The column [dbo].[Dijelovi].[Prodavac] is being dropped, data loss could occur.
+The column [dbo].[Dijelovi].[SrNaziv] is being dropped, data loss could occur.
+The column [dbo].[Dijelovi].[DatumUnosa] on table [dbo].[Dijelovi] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The type for column VrstaDijela in table [dbo].[Dijelovi] is currently  VARCHAR (50) NOT NULL but is being changed to  INT NOT NULL. Data loss could occur.
+

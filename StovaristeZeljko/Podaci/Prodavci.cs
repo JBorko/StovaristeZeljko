@@ -19,19 +19,18 @@ namespace Podaci
         {
             this.Adrese = new HashSet<Adrese>();
             this.Automobili = new HashSet<Automobili>();
-            this.Dijelovi = new HashSet<Dijelovi>();
         }
     
         public int Id { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
         public string BrojTelefona { get; set; }
+        public Nullable<int> BankovniNalog { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Adrese> Adrese { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Automobili> Automobili { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dijelovi> Dijelovi { get; set; }
+        public virtual BankovniNalozi BankovniNalozi { get; set; }
     }
 }

@@ -17,7 +17,6 @@ namespace Podaci
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kupci()
         {
-            this.BankovniNalozi = new HashSet<BankovniNalozi>();
             this.KorisnickiNalozi = new HashSet<KorisnickiNalozi>();
         }
     
@@ -29,8 +28,6 @@ namespace Podaci
         public string Mejl { get; set; }
         public Nullable<int> Rabat { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BankovniNalozi> BankovniNalozi { get; set; }
         public virtual Firme Firme { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KorisnickiNalozi> KorisnickiNalozi { get; set; }

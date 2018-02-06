@@ -19,6 +19,7 @@ namespace Podaci
         {
             this.Firme = new HashSet<Firme>();
             this.Kupci = new HashSet<Kupci>();
+            this.StatistikeProdaje = new HashSet<StatistikeProdaje>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace Podaci
         public virtual ICollection<Firme> Firme { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kupci> Kupci { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StatistikeProdaje> StatistikeProdaje { get; set; }
     }
 }

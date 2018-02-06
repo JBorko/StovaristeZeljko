@@ -34,9 +34,10 @@
           <Property Name="Kilometraza" Type="int" Nullable="false" />
           <Property Name="KodMotora" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Napomena" Type="text" />
-          <Property Name="Prodavac" Type="int" />
+          <Property Name="Prodavac" Type="int" Nullable="false" />
           <Property Name="KupovnaCijena" Type="money" Nullable="false" />
-          <Property Name="Cijena" Type="int" Nullable="false" />
+          <Property Name="Unosilac" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="DatumUnosa" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="BankovniNalozi">
           <Key>
@@ -47,9 +48,6 @@
           <Property Name="NazivVlasnika" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="NazivBanke" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Drzava" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Firma" Type="varchar" MaxLength="50" />
-          <Property Name="Radnik" Type="char" MaxLength="13" />
-          <Property Name="Kupac" Type="int" />
         </EntityType>
         <EntityType Name="BrojeviVrata">
           <Key>
@@ -72,13 +70,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EnNaziv" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="SrNaziv" Type="varchar" MaxLength="50" />
+          <Property Name="VrstaDijela" Type="int" Nullable="false" />
           <Property Name="StepenOstecenja" Type="smallint" />
           <Property Name="Slika" Type="varchar" MaxLength="50" />
           <Property Name="Automobil" Type="int" Nullable="false" />
-          <Property Name="Prodavac" Type="int" />
           <Property Name="Cijena" Type="int" Nullable="false" />
+          <Property Name="Unosilac" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="Opis" Type="text" />
+          <Property Name="DatumUnosa" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Firme">
           <Key>
@@ -89,6 +88,7 @@
           <Property Name="Fax" Type="varchar" MaxLength="50" />
           <Property Name="Mejl" Type="varchar" MaxLength="50" />
           <Property Name="Rabat" Type="int" />
+          <Property Name="BankovniNalog" Type="int" />
         </EntityType>
         <EntityType Name="GodineProizvodnje">
           <Key>
@@ -114,8 +114,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Ime" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Prezime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ime" Type="varchar" MaxLength="50" />
+          <Property Name="Prezime" Type="varchar" MaxLength="50" />
           <Property Name="BrojTelefona" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Firma" Type="varchar" MaxLength="50" />
           <Property Name="Mejl" Type="varchar" MaxLength="50" />
@@ -144,6 +144,7 @@
           <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Opis" Type="text" />
           <Property Name="BrojTelefona" Type="varchar" MaxLength="50" />
+          <Property Name="BankovniNalog" Type="int" />
         </EntityType>
         <EntityType Name="Rabati">
           <Key>
@@ -163,6 +164,19 @@
           <Property Name="BrojTelefona" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="KorisnickoIme" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Sifra" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BankovniNalog" Type="int" />
+        </EntityType>
+        <EntityType Name="StatistikeProdaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prodao" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="Kupac" Type="int" Nullable="false" />
+          <Property Name="Dio" Type="int" Nullable="false" />
+          <Property Name="Automobil" Type="int" Nullable="false" />
+          <Property Name="Cijena" Type="int" Nullable="false" />
+          <Property Name="Rabat" Type="int" />
         </EntityType>
         <EntityType Name="TipoviMjenjaca">
           <Key>
@@ -170,6 +184,14 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tip" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VrsteDijelova">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="EnNaziv" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SrNaziv" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="VrsteGoriva">
           <Key>
@@ -238,18 +260,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="AUTOMOBIL_CIJENA_FK">
-          <End Role="Cijene" Type="Self.Cijene" Multiplicity="1" />
-          <End Role="Automobili" Type="Self.Automobili" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cijene">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Automobili">
-              <PropertyRef Name="Cijena" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AUTOMOBIL_MARKA_AUTOMOBILA_FK">
           <End Role="MarkeAutomobila" Type="Self.MarkeAutomobila" Multiplicity="1" />
           <End Role="Automobili" Type="Self.Automobili" Multiplicity="*" />
@@ -263,7 +273,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="AUTOMOBIL_PRODAVAC_FK">
-          <End Role="Prodavci" Type="Self.Prodavci" Multiplicity="0..1" />
+          <End Role="Prodavci" Type="Self.Prodavci" Multiplicity="1" />
           <End Role="Automobili" Type="Self.Automobili" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Prodavci">
@@ -271,6 +281,18 @@
             </Principal>
             <Dependent Role="Automobili">
               <PropertyRef Name="Prodavac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AUTOMOBIL_RADNIK_FK">
+          <End Role="Radnici" Type="Self.Radnici" Multiplicity="1" />
+          <End Role="Automobili" Type="Self.Automobili" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Radnici">
+              <PropertyRef Name="JMBG" />
+            </Principal>
+            <Dependent Role="Automobili">
+              <PropertyRef Name="Unosilac" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -298,42 +320,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="BANKOVI_NALOG_FIRMA_FK">
-          <End Role="Firme" Type="Self.Firme" Multiplicity="0..1" />
-          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Firme">
-              <PropertyRef Name="PIB" />
-            </Principal>
-            <Dependent Role="BankovniNalozi">
-              <PropertyRef Name="Firma" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="BANKOVI_NALOG_KUPAC_FK">
-          <End Role="Kupci" Type="Self.Kupci" Multiplicity="0..1" />
-          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kupci">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BankovniNalozi">
-              <PropertyRef Name="Kupac" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="BANKOVI_NALOG_RADNIK_FK">
-          <End Role="Radnici" Type="Self.Radnici" Multiplicity="0..1" />
-          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Radnici">
-              <PropertyRef Name="JMBG" />
-            </Principal>
-            <Dependent Role="BankovniNalozi">
-              <PropertyRef Name="Radnik" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="DIO_AUTOMOBIL_FK">
           <End Role="Automobili" Type="Self.Automobili" Multiplicity="1" />
           <End Role="Dijelovi" Type="Self.Dijelovi" Multiplicity="*" />
@@ -358,15 +344,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DIO_PRODAVAC_FK">
-          <End Role="Prodavci" Type="Self.Prodavci" Multiplicity="0..1" />
+        <Association Name="DIO_RADNIK_FK">
+          <End Role="Radnici" Type="Self.Radnici" Multiplicity="1" />
           <End Role="Dijelovi" Type="Self.Dijelovi" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Prodavci">
+            <Principal Role="Radnici">
+              <PropertyRef Name="JMBG" />
+            </Principal>
+            <Dependent Role="Dijelovi">
+              <PropertyRef Name="Unosilac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DIO_VRSTA_DIJELA_FK">
+          <End Role="VrsteDijelova" Type="Self.VrsteDijelova" Multiplicity="1" />
+          <End Role="Dijelovi" Type="Self.Dijelovi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VrsteDijelova">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Dijelovi">
-              <PropertyRef Name="Prodavac" />
+              <PropertyRef Name="VrstaDijela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FIRMA_BANK_NALOG">
+          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="0..1" />
+          <End Role="Firme" Type="Self.Firme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankovniNalozi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Firme">
+              <PropertyRef Name="BankovniNalog" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -454,6 +464,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="PRODAVAC_BANK_NALOG">
+          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="0..1" />
+          <End Role="Prodavci" Type="Self.Prodavci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankovniNalozi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prodavci">
+              <PropertyRef Name="BankovniNalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RADNIK_BANK_NALOG">
+          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="0..1" />
+          <End Role="Radnici" Type="Self.Radnici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankovniNalozi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Radnici">
+              <PropertyRef Name="BankovniNalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SP_AUTOMOBIL_FK">
+          <End Role="Automobili" Type="Self.Automobili" Multiplicity="1" />
+          <End Role="StatistikeProdaje" Type="Self.StatistikeProdaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Automobili">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StatistikeProdaje">
+              <PropertyRef Name="Automobil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SP_CIJENA_FK">
+          <End Role="Cijene" Type="Self.Cijene" Multiplicity="1" />
+          <End Role="StatistikeProdaje" Type="Self.StatistikeProdaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cijene">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StatistikeProdaje">
+              <PropertyRef Name="Cijena" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SP_DIO_FK">
+          <End Role="Dijelovi" Type="Self.Dijelovi" Multiplicity="1" />
+          <End Role="StatistikeProdaje" Type="Self.StatistikeProdaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dijelovi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StatistikeProdaje">
+              <PropertyRef Name="Dio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SP_RABAT_FK">
+          <End Role="Rabati" Type="Self.Rabati" Multiplicity="0..1" />
+          <End Role="StatistikeProdaje" Type="Self.StatistikeProdaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rabati">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StatistikeProdaje">
+              <PropertyRef Name="Rabat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="stovariste_dev_dbModelStoreContainer">
           <EntitySet Name="Adrese" EntityType="Self.Adrese" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Automobili" EntityType="Self.Automobili" Schema="dbo" store:Type="Tables" />
@@ -470,7 +552,9 @@
           <EntitySet Name="Prodavci" EntityType="Self.Prodavci" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rabati" EntityType="Self.Rabati" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Radnici" EntityType="Self.Radnici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatistikeProdaje" EntityType="Self.StatistikeProdaje" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoviMjenjaca" EntityType="Self.TipoviMjenjaca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VrsteDijelova" EntityType="Self.VrsteDijelova" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VrsteGoriva" EntityType="Self.VrsteGoriva" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="ADRESA_BANKOVNI_NALOG_FK" Association="Self.ADRESA_BANKOVNI_NALOG_FK">
             <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
@@ -492,16 +576,16 @@
             <End Role="BrojeviVrata" EntitySet="BrojeviVrata" />
             <End Role="Automobili" EntitySet="Automobili" />
           </AssociationSet>
-          <AssociationSet Name="AUTOMOBIL_CIJENA_FK" Association="Self.AUTOMOBIL_CIJENA_FK">
-            <End Role="Cijene" EntitySet="Cijene" />
-            <End Role="Automobili" EntitySet="Automobili" />
-          </AssociationSet>
           <AssociationSet Name="AUTOMOBIL_MARKA_AUTOMOBILA_FK" Association="Self.AUTOMOBIL_MARKA_AUTOMOBILA_FK">
             <End Role="MarkeAutomobila" EntitySet="MarkeAutomobila" />
             <End Role="Automobili" EntitySet="Automobili" />
           </AssociationSet>
           <AssociationSet Name="AUTOMOBIL_PRODAVAC_FK" Association="Self.AUTOMOBIL_PRODAVAC_FK">
             <End Role="Prodavci" EntitySet="Prodavci" />
+            <End Role="Automobili" EntitySet="Automobili" />
+          </AssociationSet>
+          <AssociationSet Name="AUTOMOBIL_RADNIK_FK" Association="Self.AUTOMOBIL_RADNIK_FK">
+            <End Role="Radnici" EntitySet="Radnici" />
             <End Role="Automobili" EntitySet="Automobili" />
           </AssociationSet>
           <AssociationSet Name="AUTOMOBIL_TIP_MJENJACA_FK" Association="Self.AUTOMOBIL_TIP_MJENJACA_FK">
@@ -512,18 +596,6 @@
             <End Role="VrsteGoriva" EntitySet="VrsteGoriva" />
             <End Role="Automobili" EntitySet="Automobili" />
           </AssociationSet>
-          <AssociationSet Name="BANKOVI_NALOG_FIRMA_FK" Association="Self.BANKOVI_NALOG_FIRMA_FK">
-            <End Role="Firme" EntitySet="Firme" />
-            <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
-          </AssociationSet>
-          <AssociationSet Name="BANKOVI_NALOG_KUPAC_FK" Association="Self.BANKOVI_NALOG_KUPAC_FK">
-            <End Role="Kupci" EntitySet="Kupci" />
-            <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
-          </AssociationSet>
-          <AssociationSet Name="BANKOVI_NALOG_RADNIK_FK" Association="Self.BANKOVI_NALOG_RADNIK_FK">
-            <End Role="Radnici" EntitySet="Radnici" />
-            <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
-          </AssociationSet>
           <AssociationSet Name="DIO_AUTOMOBIL_FK" Association="Self.DIO_AUTOMOBIL_FK">
             <End Role="Automobili" EntitySet="Automobili" />
             <End Role="Dijelovi" EntitySet="Dijelovi" />
@@ -532,9 +604,17 @@
             <End Role="Cijene" EntitySet="Cijene" />
             <End Role="Dijelovi" EntitySet="Dijelovi" />
           </AssociationSet>
-          <AssociationSet Name="DIO_PRODAVAC_FK" Association="Self.DIO_PRODAVAC_FK">
-            <End Role="Prodavci" EntitySet="Prodavci" />
+          <AssociationSet Name="DIO_RADNIK_FK" Association="Self.DIO_RADNIK_FK">
+            <End Role="Radnici" EntitySet="Radnici" />
             <End Role="Dijelovi" EntitySet="Dijelovi" />
+          </AssociationSet>
+          <AssociationSet Name="DIO_VRSTA_DIJELA_FK" Association="Self.DIO_VRSTA_DIJELA_FK">
+            <End Role="VrsteDijelova" EntitySet="VrsteDijelova" />
+            <End Role="Dijelovi" EntitySet="Dijelovi" />
+          </AssociationSet>
+          <AssociationSet Name="FIRMA_BANK_NALOG" Association="Self.FIRMA_BANK_NALOG">
+            <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
+            <End Role="Firme" EntitySet="Firme" />
           </AssociationSet>
           <AssociationSet Name="FIRME_RABAT_FK" Association="Self.FIRME_RABAT_FK">
             <End Role="Rabati" EntitySet="Rabati" />
@@ -563,6 +643,30 @@
           <AssociationSet Name="MODEL_MARKA_AUTOMOBILA_FK" Association="Self.MODEL_MARKA_AUTOMOBILA_FK">
             <End Role="MarkeAutomobila" EntitySet="MarkeAutomobila" />
             <End Role="ModeliAutomobila" EntitySet="ModeliAutomobila" />
+          </AssociationSet>
+          <AssociationSet Name="PRODAVAC_BANK_NALOG" Association="Self.PRODAVAC_BANK_NALOG">
+            <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
+            <End Role="Prodavci" EntitySet="Prodavci" />
+          </AssociationSet>
+          <AssociationSet Name="RADNIK_BANK_NALOG" Association="Self.RADNIK_BANK_NALOG">
+            <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
+            <End Role="Radnici" EntitySet="Radnici" />
+          </AssociationSet>
+          <AssociationSet Name="SP_AUTOMOBIL_FK" Association="Self.SP_AUTOMOBIL_FK">
+            <End Role="Automobili" EntitySet="Automobili" />
+            <End Role="StatistikeProdaje" EntitySet="StatistikeProdaje" />
+          </AssociationSet>
+          <AssociationSet Name="SP_CIJENA_FK" Association="Self.SP_CIJENA_FK">
+            <End Role="Cijene" EntitySet="Cijene" />
+            <End Role="StatistikeProdaje" EntitySet="StatistikeProdaje" />
+          </AssociationSet>
+          <AssociationSet Name="SP_DIO_FK" Association="Self.SP_DIO_FK">
+            <End Role="Dijelovi" EntitySet="Dijelovi" />
+            <End Role="StatistikeProdaje" EntitySet="StatistikeProdaje" />
+          </AssociationSet>
+          <AssociationSet Name="SP_RABAT_FK" Association="Self.SP_RABAT_FK">
+            <End Role="Rabati" EntitySet="Rabati" />
+            <End Role="StatistikeProdaje" EntitySet="StatistikeProdaje" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -603,16 +707,18 @@
           <Property Name="Kilometraza" Type="Int32" Nullable="false" />
           <Property Name="KodMotora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Napomena" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Prodavac" Type="Int32" />
+          <Property Name="Prodavac" Type="Int32" Nullable="false" />
           <Property Name="KupovnaCijena" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Cijena" Type="Int32" Nullable="false" />
+          <Property Name="Unosilac" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DatumUnosa" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="BrojeviVrata" Relationship="Self.AUTOMOBIL_BROJEVI_VRATA_FK" FromRole="Automobili" ToRole="BrojeviVrata" />
-          <NavigationProperty Name="Cijene" Relationship="Self.AUTOMOBIL_CIJENA_FK" FromRole="Automobili" ToRole="Cijene" />
           <NavigationProperty Name="MarkeAutomobila" Relationship="Self.AUTOMOBIL_MARKA_AUTOMOBILA_FK" FromRole="Automobili" ToRole="MarkeAutomobila" />
           <NavigationProperty Name="Prodavci" Relationship="Self.AUTOMOBIL_PRODAVAC_FK" FromRole="Automobili" ToRole="Prodavci" />
+          <NavigationProperty Name="Radnici" Relationship="Self.AUTOMOBIL_RADNIK_FK" FromRole="Automobili" ToRole="Radnici" />
           <NavigationProperty Name="TipoviMjenjaca" Relationship="Self.AUTOMOBIL_TIP_MJENJACA_FK" FromRole="Automobili" ToRole="TipoviMjenjaca" />
           <NavigationProperty Name="VrsteGoriva" Relationship="Self.AUTOMOBIL_VRSTA_GORIVA_FK" FromRole="Automobili" ToRole="VrsteGoriva" />
           <NavigationProperty Name="Dijelovi" Relationship="Self.DIO_AUTOMOBIL_FK" FromRole="Automobili" ToRole="Dijelovi" />
+          <NavigationProperty Name="StatistikeProdaje" Relationship="Self.SP_AUTOMOBIL_FK" FromRole="Automobili" ToRole="StatistikeProdaje" />
         </EntityType>
         <EntityType Name="BankovniNalozi">
           <Key>
@@ -623,13 +729,10 @@
           <Property Name="NazivVlasnika" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NazivBanke" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Drzava" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Firma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Radnik" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
-          <Property Name="Kupac" Type="Int32" />
           <NavigationProperty Name="Adrese" Relationship="Self.ADRESA_BANKOVNI_NALOG_FK" FromRole="BankovniNalozi" ToRole="Adrese" />
-          <NavigationProperty Name="Firme" Relationship="Self.BANKOVI_NALOG_FIRMA_FK" FromRole="BankovniNalozi" ToRole="Firme" />
-          <NavigationProperty Name="Kupci" Relationship="Self.BANKOVI_NALOG_KUPAC_FK" FromRole="BankovniNalozi" ToRole="Kupci" />
-          <NavigationProperty Name="Radnici" Relationship="Self.BANKOVI_NALOG_RADNIK_FK" FromRole="BankovniNalozi" ToRole="Radnici" />
+          <NavigationProperty Name="Firme" Relationship="Self.FIRMA_BANK_NALOG" FromRole="BankovniNalozi" ToRole="Firme" />
+          <NavigationProperty Name="Prodavci" Relationship="Self.PRODAVAC_BANK_NALOG" FromRole="BankovniNalozi" ToRole="Prodavci" />
+          <NavigationProperty Name="Radnici" Relationship="Self.RADNIK_BANK_NALOG" FromRole="BankovniNalozi" ToRole="Radnici" />
         </EntityType>
         <EntityType Name="BrojeviVrata">
           <Key>
@@ -647,24 +750,27 @@
           <Property Name="Bruto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Porez" Type="Double" Nullable="false" />
           <Property Name="Neto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Automobili" Relationship="Self.AUTOMOBIL_CIJENA_FK" FromRole="Cijene" ToRole="Automobili" />
           <NavigationProperty Name="Dijelovi" Relationship="Self.DIO_CIJENA_FK" FromRole="Cijene" ToRole="Dijelovi" />
+          <NavigationProperty Name="StatistikeProdaje" Relationship="Self.SP_CIJENA_FK" FromRole="Cijene" ToRole="StatistikeProdaje" />
         </EntityType>
         <EntityType Name="Dijelovi">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EnNaziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SrNaziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VrstaDijela" Type="Int32" Nullable="false" />
           <Property Name="StepenOstecenja" Type="Int16" />
           <Property Name="Slika" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Automobil" Type="Int32" Nullable="false" />
-          <Property Name="Prodavac" Type="Int32" />
           <Property Name="Cijena" Type="Int32" Nullable="false" />
+          <Property Name="Unosilac" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DatumUnosa" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Automobili" Relationship="Self.DIO_AUTOMOBIL_FK" FromRole="Dijelovi" ToRole="Automobili" />
           <NavigationProperty Name="Cijene" Relationship="Self.DIO_CIJENA_FK" FromRole="Dijelovi" ToRole="Cijene" />
-          <NavigationProperty Name="Prodavci" Relationship="Self.DIO_PRODAVAC_FK" FromRole="Dijelovi" ToRole="Prodavci" />
+          <NavigationProperty Name="Radnici" Relationship="Self.DIO_RADNIK_FK" FromRole="Dijelovi" ToRole="Radnici" />
+          <NavigationProperty Name="VrsteDijelova" Relationship="Self.DIO_VRSTA_DIJELA_FK" FromRole="Dijelovi" ToRole="VrsteDijelova" />
+          <NavigationProperty Name="StatistikeProdaje" Relationship="Self.SP_DIO_FK" FromRole="Dijelovi" ToRole="StatistikeProdaje" />
         </EntityType>
         <EntityType Name="Firme">
           <Key>
@@ -675,8 +781,9 @@
           <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Mejl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Rabat" Type="Int32" />
+          <Property Name="BankovniNalog" Type="Int32" />
           <NavigationProperty Name="Adrese" Relationship="Self.ADRESA_FIRMA_FK" FromRole="Firme" ToRole="Adrese" />
-          <NavigationProperty Name="BankovniNalozi" Relationship="Self.BANKOVI_NALOG_FIRMA_FK" FromRole="Firme" ToRole="BankovniNalozi" />
+          <NavigationProperty Name="BankovniNalozi" Relationship="Self.FIRMA_BANK_NALOG" FromRole="Firme" ToRole="BankovniNalozi" />
           <NavigationProperty Name="Rabati" Relationship="Self.FIRME_RABAT_FK" FromRole="Firme" ToRole="Rabati" />
           <NavigationProperty Name="Kupci" Relationship="Self.KUPAC_FIRMA_FK" FromRole="Firme" ToRole="Kupci" />
         </EntityType>
@@ -707,13 +814,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BrojTelefona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Firma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Mejl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Rabat" Type="Int32" />
-          <NavigationProperty Name="BankovniNalozi" Relationship="Self.BANKOVI_NALOG_KUPAC_FK" FromRole="Kupci" ToRole="BankovniNalozi" />
           <NavigationProperty Name="Firme" Relationship="Self.KUPAC_FIRMA_FK" FromRole="Kupci" ToRole="Firme" />
           <NavigationProperty Name="KorisnickiNalozi" Relationship="Self.KORISNICKI_NALOG_KUPAC_FK" FromRole="Kupci" ToRole="KorisnickiNalozi" />
           <NavigationProperty Name="Rabati" Relationship="Self.KUPAC_RABAT_FK" FromRole="Kupci" ToRole="Rabati" />
@@ -745,9 +851,10 @@
           <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="BrojTelefona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BankovniNalog" Type="Int32" />
           <NavigationProperty Name="Adrese" Relationship="Self.ADRESA_PRODAVAC_FK" FromRole="Prodavci" ToRole="Adrese" />
           <NavigationProperty Name="Automobili" Relationship="Self.AUTOMOBIL_PRODAVAC_FK" FromRole="Prodavci" ToRole="Automobili" />
-          <NavigationProperty Name="Dijelovi" Relationship="Self.DIO_PRODAVAC_FK" FromRole="Prodavci" ToRole="Dijelovi" />
+          <NavigationProperty Name="BankovniNalozi" Relationship="Self.PRODAVAC_BANK_NALOG" FromRole="Prodavci" ToRole="BankovniNalozi" />
         </EntityType>
         <EntityType Name="Rabati">
           <Key>
@@ -757,6 +864,7 @@
           <Property Name="Procenat" Type="Double" Nullable="false" />
           <NavigationProperty Name="Firme" Relationship="Self.FIRME_RABAT_FK" FromRole="Rabati" ToRole="Firme" />
           <NavigationProperty Name="Kupci" Relationship="Self.KUPAC_RABAT_FK" FromRole="Rabati" ToRole="Kupci" />
+          <NavigationProperty Name="StatistikeProdaje" Relationship="Self.SP_RABAT_FK" FromRole="Rabati" ToRole="StatistikeProdaje" />
         </EntityType>
         <EntityType Name="Radnici">
           <Key>
@@ -769,9 +877,28 @@
           <Property Name="BrojTelefona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="KorisnickoIme" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Sifra" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BankovniNalog" Type="Int32" />
           <NavigationProperty Name="Adrese" Relationship="Self.ADRESA_RADNIK_FK" FromRole="Radnici" ToRole="Adrese" />
-          <NavigationProperty Name="BankovniNalozi" Relationship="Self.BANKOVI_NALOG_RADNIK_FK" FromRole="Radnici" ToRole="BankovniNalozi" />
+          <NavigationProperty Name="Automobili" Relationship="Self.AUTOMOBIL_RADNIK_FK" FromRole="Radnici" ToRole="Automobili" />
+          <NavigationProperty Name="BankovniNalozi" Relationship="Self.RADNIK_BANK_NALOG" FromRole="Radnici" ToRole="BankovniNalozi" />
+          <NavigationProperty Name="Dijelovi" Relationship="Self.DIO_RADNIK_FK" FromRole="Radnici" ToRole="Dijelovi" />
           <NavigationProperty Name="KorisnickiNalozi" Relationship="Self.KORISNICKI_NALOG_RADNIK_FK" FromRole="Radnici" ToRole="KorisnickiNalozi" />
+        </EntityType>
+        <EntityType Name="StatistikeProdaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prodao" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Kupac" Type="Int32" Nullable="false" />
+          <Property Name="Dio" Type="Int32" Nullable="false" />
+          <Property Name="Automobil" Type="Int32" Nullable="false" />
+          <Property Name="Cijena" Type="Int32" Nullable="false" />
+          <Property Name="Rabat" Type="Int32" />
+          <NavigationProperty Name="Automobili" Relationship="Self.SP_AUTOMOBIL_FK" FromRole="StatistikeProdaje" ToRole="Automobili" />
+          <NavigationProperty Name="Cijene" Relationship="Self.SP_CIJENA_FK" FromRole="StatistikeProdaje" ToRole="Cijene" />
+          <NavigationProperty Name="Dijelovi" Relationship="Self.SP_DIO_FK" FromRole="StatistikeProdaje" ToRole="Dijelovi" />
+          <NavigationProperty Name="Rabati" Relationship="Self.SP_RABAT_FK" FromRole="StatistikeProdaje" ToRole="Rabati" />
         </EntityType>
         <EntityType Name="TipoviMjenjaca">
           <Key>
@@ -780,6 +907,15 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Automobili" Relationship="Self.AUTOMOBIL_TIP_MJENJACA_FK" FromRole="TipoviMjenjaca" ToRole="Automobili" />
+        </EntityType>
+        <EntityType Name="VrsteDijelova">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="EnNaziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SrNaziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Dijelovi" Relationship="Self.DIO_VRSTA_DIJELA_FK" FromRole="VrsteDijelova" ToRole="Dijelovi" />
         </EntityType>
         <EntityType Name="VrsteGoriva">
           <Key>
@@ -849,18 +985,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="AUTOMOBIL_CIJENA_FK">
-          <End Role="Cijene" Type="Self.Cijene" Multiplicity="1" />
-          <End Role="Automobili" Type="Self.Automobili" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cijene">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Automobili">
-              <PropertyRef Name="Cijena" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AUTOMOBIL_MARKA_AUTOMOBILA_FK">
           <End Role="MarkeAutomobila" Type="Self.MarkeAutomobila" Multiplicity="1" />
           <End Role="Automobili" Type="Self.Automobili" Multiplicity="*" />
@@ -874,7 +998,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="AUTOMOBIL_PRODAVAC_FK">
-          <End Role="Prodavci" Type="Self.Prodavci" Multiplicity="0..1" />
+          <End Role="Prodavci" Type="Self.Prodavci" Multiplicity="1" />
           <End Role="Automobili" Type="Self.Automobili" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Prodavci">
@@ -882,6 +1006,18 @@
             </Principal>
             <Dependent Role="Automobili">
               <PropertyRef Name="Prodavac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AUTOMOBIL_RADNIK_FK">
+          <End Role="Radnici" Type="Self.Radnici" Multiplicity="1" />
+          <End Role="Automobili" Type="Self.Automobili" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Radnici">
+              <PropertyRef Name="JMBG" />
+            </Principal>
+            <Dependent Role="Automobili">
+              <PropertyRef Name="Unosilac" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -921,39 +1057,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="BANKOVI_NALOG_FIRMA_FK">
-          <End Role="Firme" Type="Self.Firme" Multiplicity="0..1" />
-          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="*" />
+        <Association Name="SP_AUTOMOBIL_FK">
+          <End Role="Automobili" Type="Self.Automobili" Multiplicity="1" />
+          <End Role="StatistikeProdaje" Type="Self.StatistikeProdaje" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Firme">
-              <PropertyRef Name="PIB" />
-            </Principal>
-            <Dependent Role="BankovniNalozi">
-              <PropertyRef Name="Firma" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="BANKOVI_NALOG_KUPAC_FK">
-          <End Role="Kupci" Type="Self.Kupci" Multiplicity="0..1" />
-          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kupci">
+            <Principal Role="Automobili">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="BankovniNalozi">
-              <PropertyRef Name="Kupac" />
+            <Dependent Role="StatistikeProdaje">
+              <PropertyRef Name="Automobil" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="BANKOVI_NALOG_RADNIK_FK">
-          <End Role="Radnici" Type="Self.Radnici" Multiplicity="0..1" />
-          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="*" />
+        <Association Name="FIRMA_BANK_NALOG">
+          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="0..1" />
+          <End Role="Firme" Type="Self.Firme" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Radnici">
-              <PropertyRef Name="JMBG" />
+            <Principal Role="BankovniNalozi">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="BankovniNalozi">
-              <PropertyRef Name="Radnik" />
+            <Dependent Role="Firme">
+              <PropertyRef Name="BankovniNalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODAVAC_BANK_NALOG">
+          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="0..1" />
+          <End Role="Prodavci" Type="Self.Prodavci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankovniNalozi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prodavci">
+              <PropertyRef Name="BankovniNalog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RADNIK_BANK_NALOG">
+          <End Role="BankovniNalozi" Type="Self.BankovniNalozi" Multiplicity="0..1" />
+          <End Role="Radnici" Type="Self.Radnici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankovniNalozi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Radnici">
+              <PropertyRef Name="BankovniNalog" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -969,15 +1117,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DIO_PRODAVAC_FK">
-          <End Role="Prodavci" Type="Self.Prodavci" Multiplicity="0..1" />
+        <Association Name="SP_CIJENA_FK">
+          <End Role="Cijene" Type="Self.Cijene" Multiplicity="1" />
+          <End Role="StatistikeProdaje" Type="Self.StatistikeProdaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cijene">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StatistikeProdaje">
+              <PropertyRef Name="Cijena" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DIO_RADNIK_FK">
+          <End Role="Radnici" Type="Self.Radnici" Multiplicity="1" />
           <End Role="Dijelovi" Type="Self.Dijelovi" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Prodavci">
+            <Principal Role="Radnici">
+              <PropertyRef Name="JMBG" />
+            </Principal>
+            <Dependent Role="Dijelovi">
+              <PropertyRef Name="Unosilac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DIO_VRSTA_DIJELA_FK">
+          <End Role="VrsteDijelova" Type="Self.VrsteDijelova" Multiplicity="1" />
+          <End Role="Dijelovi" Type="Self.Dijelovi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VrsteDijelova">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Dijelovi">
-              <PropertyRef Name="Prodavac" />
+              <PropertyRef Name="VrstaDijela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SP_DIO_FK">
+          <End Role="Dijelovi" Type="Self.Dijelovi" Multiplicity="1" />
+          <End Role="StatistikeProdaje" Type="Self.StatistikeProdaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dijelovi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StatistikeProdaje">
+              <PropertyRef Name="Dio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1065,7 +1249,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="stovariste_dev_dbEntities1" annotation:LazyLoadingEnabled="true">
+        <Association Name="SP_RABAT_FK">
+          <End Role="Rabati" Type="Self.Rabati" Multiplicity="0..1" />
+          <End Role="StatistikeProdaje" Type="Self.StatistikeProdaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rabati">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StatistikeProdaje">
+              <PropertyRef Name="Rabat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="stovariste_dev_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Adrese" EntityType="Self.Adrese" />
           <EntitySet Name="Automobili" EntityType="Self.Automobili" />
           <EntitySet Name="BankovniNalozi" EntityType="Self.BankovniNalozi" />
@@ -1081,7 +1277,9 @@
           <EntitySet Name="Prodavci" EntityType="Self.Prodavci" />
           <EntitySet Name="Rabati" EntityType="Self.Rabati" />
           <EntitySet Name="Radnici" EntityType="Self.Radnici" />
+          <EntitySet Name="StatistikeProdaje" EntityType="Self.StatistikeProdaje" />
           <EntitySet Name="TipoviMjenjaca" EntityType="Self.TipoviMjenjaca" />
+          <EntitySet Name="VrsteDijelova" EntityType="Self.VrsteDijelova" />
           <EntitySet Name="VrsteGoriva" EntityType="Self.VrsteGoriva" />
           <AssociationSet Name="ADRESA_BANKOVNI_NALOG_FK" Association="Self.ADRESA_BANKOVNI_NALOG_FK">
             <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
@@ -1103,16 +1301,16 @@
             <End Role="BrojeviVrata" EntitySet="BrojeviVrata" />
             <End Role="Automobili" EntitySet="Automobili" />
           </AssociationSet>
-          <AssociationSet Name="AUTOMOBIL_CIJENA_FK" Association="Self.AUTOMOBIL_CIJENA_FK">
-            <End Role="Cijene" EntitySet="Cijene" />
-            <End Role="Automobili" EntitySet="Automobili" />
-          </AssociationSet>
           <AssociationSet Name="AUTOMOBIL_MARKA_AUTOMOBILA_FK" Association="Self.AUTOMOBIL_MARKA_AUTOMOBILA_FK">
             <End Role="MarkeAutomobila" EntitySet="MarkeAutomobila" />
             <End Role="Automobili" EntitySet="Automobili" />
           </AssociationSet>
           <AssociationSet Name="AUTOMOBIL_PRODAVAC_FK" Association="Self.AUTOMOBIL_PRODAVAC_FK">
             <End Role="Prodavci" EntitySet="Prodavci" />
+            <End Role="Automobili" EntitySet="Automobili" />
+          </AssociationSet>
+          <AssociationSet Name="AUTOMOBIL_RADNIK_FK" Association="Self.AUTOMOBIL_RADNIK_FK">
+            <End Role="Radnici" EntitySet="Radnici" />
             <End Role="Automobili" EntitySet="Automobili" />
           </AssociationSet>
           <AssociationSet Name="AUTOMOBIL_TIP_MJENJACA_FK" Association="Self.AUTOMOBIL_TIP_MJENJACA_FK">
@@ -1127,25 +1325,41 @@
             <End Role="Automobili" EntitySet="Automobili" />
             <End Role="Dijelovi" EntitySet="Dijelovi" />
           </AssociationSet>
-          <AssociationSet Name="BANKOVI_NALOG_FIRMA_FK" Association="Self.BANKOVI_NALOG_FIRMA_FK">
+          <AssociationSet Name="SP_AUTOMOBIL_FK" Association="Self.SP_AUTOMOBIL_FK">
+            <End Role="Automobili" EntitySet="Automobili" />
+            <End Role="StatistikeProdaje" EntitySet="StatistikeProdaje" />
+          </AssociationSet>
+          <AssociationSet Name="FIRMA_BANK_NALOG" Association="Self.FIRMA_BANK_NALOG">
+            <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
             <End Role="Firme" EntitySet="Firme" />
-            <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
           </AssociationSet>
-          <AssociationSet Name="BANKOVI_NALOG_KUPAC_FK" Association="Self.BANKOVI_NALOG_KUPAC_FK">
-            <End Role="Kupci" EntitySet="Kupci" />
+          <AssociationSet Name="PRODAVAC_BANK_NALOG" Association="Self.PRODAVAC_BANK_NALOG">
             <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
+            <End Role="Prodavci" EntitySet="Prodavci" />
           </AssociationSet>
-          <AssociationSet Name="BANKOVI_NALOG_RADNIK_FK" Association="Self.BANKOVI_NALOG_RADNIK_FK">
+          <AssociationSet Name="RADNIK_BANK_NALOG" Association="Self.RADNIK_BANK_NALOG">
+            <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
             <End Role="Radnici" EntitySet="Radnici" />
-            <End Role="BankovniNalozi" EntitySet="BankovniNalozi" />
           </AssociationSet>
           <AssociationSet Name="DIO_CIJENA_FK" Association="Self.DIO_CIJENA_FK">
             <End Role="Cijene" EntitySet="Cijene" />
             <End Role="Dijelovi" EntitySet="Dijelovi" />
           </AssociationSet>
-          <AssociationSet Name="DIO_PRODAVAC_FK" Association="Self.DIO_PRODAVAC_FK">
-            <End Role="Prodavci" EntitySet="Prodavci" />
+          <AssociationSet Name="SP_CIJENA_FK" Association="Self.SP_CIJENA_FK">
+            <End Role="Cijene" EntitySet="Cijene" />
+            <End Role="StatistikeProdaje" EntitySet="StatistikeProdaje" />
+          </AssociationSet>
+          <AssociationSet Name="DIO_RADNIK_FK" Association="Self.DIO_RADNIK_FK">
+            <End Role="Radnici" EntitySet="Radnici" />
             <End Role="Dijelovi" EntitySet="Dijelovi" />
+          </AssociationSet>
+          <AssociationSet Name="DIO_VRSTA_DIJELA_FK" Association="Self.DIO_VRSTA_DIJELA_FK">
+            <End Role="VrsteDijelova" EntitySet="VrsteDijelova" />
+            <End Role="Dijelovi" EntitySet="Dijelovi" />
+          </AssociationSet>
+          <AssociationSet Name="SP_DIO_FK" Association="Self.SP_DIO_FK">
+            <End Role="Dijelovi" EntitySet="Dijelovi" />
+            <End Role="StatistikeProdaje" EntitySet="StatistikeProdaje" />
           </AssociationSet>
           <AssociationSet Name="FIRME_RABAT_FK" Association="Self.FIRME_RABAT_FK">
             <End Role="Rabati" EntitySet="Rabati" />
@@ -1175,13 +1389,17 @@
             <End Role="MarkeAutomobila" EntitySet="MarkeAutomobila" />
             <End Role="ModeliAutomobila" EntitySet="ModeliAutomobila" />
           </AssociationSet>
+          <AssociationSet Name="SP_RABAT_FK" Association="Self.SP_RABAT_FK">
+            <End Role="Rabati" EntitySet="Rabati" />
+            <End Role="StatistikeProdaje" EntitySet="StatistikeProdaje" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="stovariste_dev_dbModelStoreContainer" CdmEntityContainer="stovariste_dev_dbEntities1">
+        <EntityContainerMapping StorageEntityContainer="stovariste_dev_dbModelStoreContainer" CdmEntityContainer="stovariste_dev_dbEntities">
           <EntitySetMapping Name="Adrese">
             <EntityTypeMapping TypeName="stovariste_dev_dbModel.Adrese">
               <MappingFragment StoreEntitySet="Adrese">
@@ -1213,7 +1431,8 @@
                 <ScalarProperty Name="Napomena" ColumnName="Napomena" />
                 <ScalarProperty Name="Prodavac" ColumnName="Prodavac" />
                 <ScalarProperty Name="KupovnaCijena" ColumnName="KupovnaCijena" />
-                <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+                <ScalarProperty Name="Unosilac" ColumnName="Unosilac" />
+                <ScalarProperty Name="DatumUnosa" ColumnName="DatumUnosa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1225,9 +1444,6 @@
                 <ScalarProperty Name="NazivVlasnika" ColumnName="NazivVlasnika" />
                 <ScalarProperty Name="NazivBanke" ColumnName="NazivBanke" />
                 <ScalarProperty Name="Drzava" ColumnName="Drzava" />
-                <ScalarProperty Name="Firma" ColumnName="Firma" />
-                <ScalarProperty Name="Radnik" ColumnName="Radnik" />
-                <ScalarProperty Name="Kupac" ColumnName="Kupac" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1253,13 +1469,14 @@
             <EntityTypeMapping TypeName="stovariste_dev_dbModel.Dijelovi">
               <MappingFragment StoreEntitySet="Dijelovi">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="EnNaziv" ColumnName="EnNaziv" />
-                <ScalarProperty Name="SrNaziv" ColumnName="SrNaziv" />
+                <ScalarProperty Name="VrstaDijela" ColumnName="VrstaDijela" />
                 <ScalarProperty Name="StepenOstecenja" ColumnName="StepenOstecenja" />
                 <ScalarProperty Name="Slika" ColumnName="Slika" />
                 <ScalarProperty Name="Automobil" ColumnName="Automobil" />
-                <ScalarProperty Name="Prodavac" ColumnName="Prodavac" />
                 <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+                <ScalarProperty Name="Unosilac" ColumnName="Unosilac" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DatumUnosa" ColumnName="DatumUnosa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1271,6 +1488,7 @@
                 <ScalarProperty Name="Fax" ColumnName="Fax" />
                 <ScalarProperty Name="Mejl" ColumnName="Mejl" />
                 <ScalarProperty Name="Rabat" ColumnName="Rabat" />
+                <ScalarProperty Name="BankovniNalog" ColumnName="BankovniNalog" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1332,6 +1550,7 @@
                 <ScalarProperty Name="Naziv" ColumnName="Naziv" />
                 <ScalarProperty Name="Opis" ColumnName="Opis" />
                 <ScalarProperty Name="BrojTelefona" ColumnName="BrojTelefona" />
+                <ScalarProperty Name="BankovniNalog" ColumnName="BankovniNalog" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1353,6 +1572,20 @@
                 <ScalarProperty Name="BrojTelefona" ColumnName="BrojTelefona" />
                 <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
                 <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+                <ScalarProperty Name="BankovniNalog" ColumnName="BankovniNalog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatistikeProdaje">
+            <EntityTypeMapping TypeName="stovariste_dev_dbModel.StatistikeProdaje">
+              <MappingFragment StoreEntitySet="StatistikeProdaje">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Prodao" ColumnName="Prodao" />
+                <ScalarProperty Name="Kupac" ColumnName="Kupac" />
+                <ScalarProperty Name="Dio" ColumnName="Dio" />
+                <ScalarProperty Name="Automobil" ColumnName="Automobil" />
+                <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+                <ScalarProperty Name="Rabat" ColumnName="Rabat" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1361,6 +1594,15 @@
               <MappingFragment StoreEntitySet="TipoviMjenjaca">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Tip" ColumnName="Tip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VrsteDijelova">
+            <EntityTypeMapping TypeName="stovariste_dev_dbModel.VrsteDijelova">
+              <MappingFragment StoreEntitySet="VrsteDijelova">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EnNaziv" ColumnName="EnNaziv" />
+                <ScalarProperty Name="SrNaziv" ColumnName="SrNaziv" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

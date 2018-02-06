@@ -13,10 +13,10 @@ namespace Podaci
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class stovariste_dev_dbEntities1 : DbContext
+    public partial class stovariste_dev_dbEntities : DbContext
     {
-        public stovariste_dev_dbEntities1()
-            : base("name=stovariste_dev_dbEntities1")
+        public stovariste_dev_dbEntities()
+            : base("name=stovariste_dev_dbEntities")
         {
         }
     
@@ -40,7 +40,9 @@ namespace Podaci
         public virtual DbSet<Prodavci> Prodavci { get; set; }
         public virtual DbSet<Rabati> Rabati { get; set; }
         public virtual DbSet<Radnici> Radnici { get; set; }
+        public virtual DbSet<StatistikeProdaje> StatistikeProdaje { get; set; }
         public virtual DbSet<TipoviMjenjaca> TipoviMjenjaca { get; set; }
+        public virtual DbSet<VrsteDijelova> VrsteDijelova { get; set; }
         public virtual DbSet<VrsteGoriva> VrsteGoriva { get; set; }
     }
 }

@@ -76,6 +76,8 @@
     <Build Include="Prodavci.sql" />
     <Build Include="Cijene.sql" />
     <Build Include="Rabati.sql" />
+    <Build Include="StatistikeProdaje.sql" />
+    <Build Include="VrsteDijelova.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="DatabaseProject.refactorlog" />

@@ -6,5 +6,7 @@
     [Mejl] VARCHAR(100) NULL, 
     [BrojTelefona] VARCHAR(50) NOT NULL, 
     [KorisnickoIme] VARCHAR(20) NOT NULL, 
-    [Sifra] VARCHAR(20) NOT NULL
+    [Sifra] VARCHAR(20) NOT NULL, 
+    [BankovniNalog] INT NULL,
+	CONSTRAINT RADNIK_BANK_NALOG FOREIGN KEY (BankovniNalog) REFERENCES BankovniNalozi(id)
 )

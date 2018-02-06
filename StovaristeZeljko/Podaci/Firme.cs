@@ -18,7 +18,6 @@ namespace Podaci
         public Firme()
         {
             this.Adrese = new HashSet<Adrese>();
-            this.BankovniNalozi = new HashSet<BankovniNalozi>();
             this.Kupci = new HashSet<Kupci>();
         }
     
@@ -27,11 +26,11 @@ namespace Podaci
         public string Fax { get; set; }
         public string Mejl { get; set; }
         public Nullable<int> Rabat { get; set; }
+        public Nullable<int> BankovniNalog { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Adrese> Adrese { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BankovniNalozi> BankovniNalozi { get; set; }
+        public virtual BankovniNalozi BankovniNalozi { get; set; }
         public virtual Rabati Rabati { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kupci> Kupci { get; set; }

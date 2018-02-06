@@ -77,4 +77,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Opis" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="04315e0a-e4a4-4916-bb1a-3958718a93d8" ChangeDateTime="02/06/2018 18:24:27" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Dijelovi].[EnNaziv]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dijelovi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="VrstaDijela" />
+  </Operation>
 </Operations>

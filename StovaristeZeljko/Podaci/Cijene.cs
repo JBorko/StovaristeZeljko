@@ -17,8 +17,8 @@ namespace Podaci
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cijene()
         {
-            this.Automobili = new HashSet<Automobili>();
             this.Dijelovi = new HashSet<Dijelovi>();
+            this.StatistikeProdaje = new HashSet<StatistikeProdaje>();
         }
     
         public int Id { get; set; }
@@ -27,8 +27,8 @@ namespace Podaci
         public decimal Neto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Automobili> Automobili { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dijelovi> Dijelovi { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StatistikeProdaje> StatistikeProdaje { get; set; }
     }
 }

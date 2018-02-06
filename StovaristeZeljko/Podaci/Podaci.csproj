@@ -113,7 +113,13 @@
     <Compile Include="Radnici.cs">
       <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
+    <Compile Include="StatistikeProdaje.cs">
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
+    </Compile>
     <Compile Include="TipoviMjenjaca.cs">
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VrsteDijelova.cs">
       <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="VrsteGoriva.cs">

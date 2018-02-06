@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[Kupci]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
-    [Ime] VARCHAR(50) NOT NULL, 
-    [Prezime] VARCHAR(50) NOT NULL, 
+    [Ime] VARCHAR(50) NULL, 
+    [Prezime] VARCHAR(50) NULL, 
     [BrojTelefona] VARCHAR(50) NOT NULL, 
     [Firma] VARCHAR(50) NULL,
 	[Mejl] VARCHAR(50) NULL, 

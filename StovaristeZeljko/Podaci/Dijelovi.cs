@@ -14,17 +14,27 @@ namespace Podaci
     
     public partial class Dijelovi
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Dijelovi()
+        {
+            this.StatistikeProdaje = new HashSet<StatistikeProdaje>();
+        }
+    
         public int Id { get; set; }
-        public string EnNaziv { get; set; }
-        public string SrNaziv { get; set; }
+        public int VrstaDijela { get; set; }
         public Nullable<short> StepenOstecenja { get; set; }
         public string Slika { get; set; }
         public int Automobil { get; set; }
-        public Nullable<int> Prodavac { get; set; }
         public int Cijena { get; set; }
+        public string Unosilac { get; set; }
+        public string Opis { get; set; }
+        public System.DateTime DatumUnosa { get; set; }
     
         public virtual Automobili Automobili { get; set; }
         public virtual Cijene Cijene { get; set; }
-        public virtual Prodavci Prodavci { get; set; }
+        public virtual Radnici Radnici { get; set; }
+        public virtual VrsteDijelova VrsteDijelova { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StatistikeProdaje> StatistikeProdaje { get; set; }
     }
 }
