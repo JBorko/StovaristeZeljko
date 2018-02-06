@@ -1,0 +1,11 @@
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\bin\Debug\Podaci.exe.config
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\bin\Debug\Podaci.exe
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\bin\Debug\Podaci.pdb
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\bin\Debug\EntityFramework.dll
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\bin\Debug\EntityFramework.xml
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\obj\Debug\Podaci.csprojResolveAssemblyReference.cache
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\obj\Debug\Podaci.csproj.CoreCompileInputs.cache
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\obj\Debug\Podaci.exe
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\StovaristeZeljko\Podaci\obj\Debug\Podaci.pdb

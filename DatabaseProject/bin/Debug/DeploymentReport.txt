@@ -1,0 +1,52 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Adrese] (Table)
+       [dbo].[Automobili] (Table)
+       [dbo].[BankovniNalozi] (Table)
+       [dbo].[BodyAndMainParts] (Table)
+       [dbo].[BrojeviVrata] (Table)
+       [dbo].[Cijene] (Table)
+       [dbo].[Firme] (Table)
+       [dbo].[GodineProizvodnje] (Table)
+       [dbo].[KorisnickiNalozi] (Table)
+       [dbo].[Kupci] (Table)
+       [dbo].[MarkeAutomobila] (Table)
+       [dbo].[ModeliAutomobila] (Table)
+       [dbo].[Prodavci] (Table)
+       [dbo].[Rabati] (Table)
+       [dbo].[Radnici] (Table)
+       [dbo].[TipoviMjenjaca] (Table)
+       [dbo].[VrsteGoriva] (Table)
+       [dbo].[ADRESA_RADNIK_FK] (Foreign Key)
+       [dbo].[ADRESA_FIRMA_FK] (Foreign Key)
+       [dbo].[ADRESA_BANKOVNI_NALOG_FK] (Foreign Key)
+       [dbo].[ADRESA_PRODAVAC_FK] (Foreign Key)
+       [dbo].[AUTOMOBIL_MARKA_AUTOMOBILA_FK] (Foreign Key)
+       [dbo].[AUTOMOBIL_VRSTA_GORIVA_FK] (Foreign Key)
+       [dbo].[AUTOMOBIL_BROJEVI_VRATA_FK] (Foreign Key)
+       [dbo].[AUTOMOBIL_TIP_MJENJACA_FK] (Foreign Key)
+       [dbo].[AUTOMOBIL_PRODAVAC_FK] (Foreign Key)
+       [dbo].[BANKOVI_NALOG_FIRMA_FK] (Foreign Key)
+       [dbo].[BANKOVI_NALOG_RADNIK_FK] (Foreign Key)
+       [dbo].[BANKOVI_NALOG_KUPAC_FK] (Foreign Key)
+       [dbo].[DIO_AUTOMOBIL_FK] (Foreign Key)
+       [dbo].[DIO_PRODAVAC_FK] (Foreign Key)
+       [dbo].[FIRME_RABAT_FK] (Foreign Key)
+       [dbo].[GODINA_PROIZVODNJE_MODEL_AUTOMOBILA_FK] (Foreign Key)
+       [dbo].[KORISNICKI_NALOG_RADNIK_FK] (Foreign Key)
+       [dbo].[KORISNICKI_NALOG_KUPAC_FK] (Foreign Key)
+       [dbo].[KUPAC_FIRMA_FK] (Foreign Key)
+       [dbo].[KUPAC_RABAT_FK] (Foreign Key)
+       [dbo].[MODEL_MARKA_AUTOMOBILA_FK] (Foreign Key)
+
+** Supporting actions

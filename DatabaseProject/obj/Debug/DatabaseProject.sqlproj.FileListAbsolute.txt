@@ -1,0 +1,9 @@
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\DatabaseProject\bin\Debug\DatabaseProject.dacpac
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\DatabaseProject\bin\Debug\DatabaseProject.dll
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\DatabaseProject\bin\Debug\DatabaseProject.pdb
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\DatabaseProject\obj\Debug\DatabaseProject.dll
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\DatabaseProject\obj\Debug\DatabaseProject.pdb
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\DatabaseProject\obj\Debug\Model.xml
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\DatabaseProject\obj\Debug\refactor.xml
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\DatabaseProject\obj\Debug\postdeploy.sql
+C:\Users\Borko Djurovic\source\repos\StovaristeZeljko\DatabaseProject\obj\Debug\predeploy.sql

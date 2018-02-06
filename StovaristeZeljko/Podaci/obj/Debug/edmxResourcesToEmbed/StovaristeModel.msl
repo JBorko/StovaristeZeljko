@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="stovariste_dev_dbModelStoreContainer" CdmEntityContainer="stovariste_dev_dbEntities">
+    <EntitySetMapping Name="Adrese">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.Adrese">
+        <MappingFragment StoreEntitySet="Adrese">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+          <ScalarProperty Name="Broj" ColumnName="Broj" />
+          <ScalarProperty Name="Grad" ColumnName="Grad" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="Radnik" ColumnName="Radnik" />
+          <ScalarProperty Name="Firma" ColumnName="Firma" />
+          <ScalarProperty Name="BankovniNalog" ColumnName="BankovniNalog" />
+          <ScalarProperty Name="Prodavac" ColumnName="Prodavac" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Automobili">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.Automobili">
+        <MappingFragment StoreEntitySet="Automobili">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Boja" ColumnName="Boja" />
+          <ScalarProperty Name="Marka" ColumnName="Marka" />
+          <ScalarProperty Name="ZapreminaMotoraCCM" ColumnName="ZapreminaMotoraCCM" />
+          <ScalarProperty Name="SnagaMotoraKW" ColumnName="SnagaMotoraKW" />
+          <ScalarProperty Name="VrstaGoriva" ColumnName="VrstaGoriva" />
+          <ScalarProperty Name="BrojVrata" ColumnName="BrojVrata" />
+          <ScalarProperty Name="TipMjenjaca" ColumnName="TipMjenjaca" />
+          <ScalarProperty Name="Kilometraza" ColumnName="Kilometraza" />
+          <ScalarProperty Name="KodMotora" ColumnName="KodMotora" />
+          <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+          <ScalarProperty Name="Prodavac" ColumnName="Prodavac" />
+          <ScalarProperty Name="KupovnaCijena" ColumnName="KupovnaCijena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankovniNalozi">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.BankovniNalozi">
+        <MappingFragment StoreEntitySet="BankovniNalozi">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BrojZiroRacuna" ColumnName="BrojZiroRacuna" />
+          <ScalarProperty Name="NazivVlasnika" ColumnName="NazivVlasnika" />
+          <ScalarProperty Name="NazivBanke" ColumnName="NazivBanke" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="Firma" ColumnName="Firma" />
+          <ScalarProperty Name="Radnik" ColumnName="Radnik" />
+          <ScalarProperty Name="Kupac" ColumnName="Kupac" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BrojeviVrata">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.BrojeviVrata">
+        <MappingFragment StoreEntitySet="BrojeviVrata">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OpisniBroj" ColumnName="OpisniBroj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cijene">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.Cijene">
+        <MappingFragment StoreEntitySet="Cijene">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Bruto" ColumnName="Bruto" />
+          <ScalarProperty Name="Porez" ColumnName="Porez" />
+          <ScalarProperty Name="Neto" ColumnName="Neto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dijelovi">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.Dijelovi">
+        <MappingFragment StoreEntitySet="Dijelovi">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EnNaziv" ColumnName="EnNaziv" />
+          <ScalarProperty Name="SrNaziv" ColumnName="SrNaziv" />
+          <ScalarProperty Name="StepenOstecenja" ColumnName="StepenOstecenja" />
+          <ScalarProperty Name="Slika" ColumnName="Slika" />
+          <ScalarProperty Name="Automobil" ColumnName="Automobil" />
+          <ScalarProperty Name="Prodavac" ColumnName="Prodavac" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Firme">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.Firme">
+        <MappingFragment StoreEntitySet="Firme">
+          <ScalarProperty Name="PIB" ColumnName="PIB" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Mejl" ColumnName="Mejl" />
+          <ScalarProperty Name="Rabat" ColumnName="Rabat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GodineProizvodnje">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.GodineProizvodnje">
+        <MappingFragment StoreEntitySet="GodineProizvodnje">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="ModelAutomobila" ColumnName="ModelAutomobila" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KorisnickiNalozi">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.KorisnickiNalozi">
+        <MappingFragment StoreEntitySet="KorisnickiNalozi">
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
+          <ScalarProperty Name="Radnik" ColumnName="Radnik" />
+          <ScalarProperty Name="Kupac" ColumnName="Kupac" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kupci">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.Kupci">
+        <MappingFragment StoreEntitySet="Kupci">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="BrojTelefona" ColumnName="BrojTelefona" />
+          <ScalarProperty Name="Firma" ColumnName="Firma" />
+          <ScalarProperty Name="Mejl" ColumnName="Mejl" />
+          <ScalarProperty Name="Rabat" ColumnName="Rabat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MarkeAutomobila">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.MarkeAutomobila">
+        <MappingFragment StoreEntitySet="MarkeAutomobila">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModeliAutomobila">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.ModeliAutomobila">
+        <MappingFragment StoreEntitySet="ModeliAutomobila">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="MarkaAutomobila" ColumnName="MarkaAutomobila" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prodavci">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.Prodavci">
+        <MappingFragment StoreEntitySet="Prodavci">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="BrojTelefona" ColumnName="BrojTelefona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rabati">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.Rabati">
+        <MappingFragment StoreEntitySet="Rabati">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Procenat" ColumnName="Procenat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Radnici">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.Radnici">
+        <MappingFragment StoreEntitySet="Radnici">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Mejl" ColumnName="Mejl" />
+          <ScalarProperty Name="BrojTelefona" ColumnName="BrojTelefona" />
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoviMjenjaca">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.TipoviMjenjaca">
+        <MappingFragment StoreEntitySet="TipoviMjenjaca">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VrsteGoriva">
+      <EntityTypeMapping TypeName="stovariste_dev_dbModel.VrsteGoriva">
+        <MappingFragment StoreEntitySet="VrsteGoriva">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

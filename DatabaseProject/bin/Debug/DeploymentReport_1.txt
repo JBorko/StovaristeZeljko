@@ -1,0 +1,28 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The table [dbo].[BodyAndMainParts] is being dropped, data loss could occur.
+
+** User actions
+     Drop
+       Permission (Permission)
+       Permission (Permission)
+       [dbo].[DIO_AUTOMOBIL_FK] (Foreign Key)
+       [dbo].[DIO_PRODAVAC_FK] (Foreign Key)
+       [dbo].[BodyAndMainParts] (Table)
+     Create
+       [dbo].[Dijelovi] (Table)
+       [dbo].[DIO_AUTOMOBIL_FK] (Foreign Key)
+       [dbo].[DIO_PRODAVAC_FK] (Foreign Key)
+
+** Supporting actions
+
+The object [stovariste_dev_db] exists in the target, but it will not be dropped even though you selected the 'Generate drop statements for objects that are in the target database but that are not in the source' check box.
+The object [stovariste_dev_db_log] exists in the target, but it will not be dropped even though you selected the 'Generate drop statements for objects that are in the target database but that are not in the source' check box.
+The table [dbo].[BodyAndMainParts] is being dropped, data loss could occur.
+

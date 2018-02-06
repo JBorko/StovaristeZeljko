@@ -52,99 +52,99 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adrese.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="Automobili.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="BankovniNalozi.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="BrojeviVrata.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="Cijene.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="Dijelovi.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="Firme.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="GodineProizvodnje.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="KorisnickiNalozi.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="Kupci.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="MarkeAutomobila.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="ModeliAutomobila.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelStovarista.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelStovarista.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelStovarista.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelStovarista.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelStovarista.edmx</DependentUpon>
     </Compile>
     <Compile Include="Prodavci.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rabati.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="Radnici.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StovaristeModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StovaristeModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StovaristeModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StovaristeModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StovaristeModel.edmx</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoviMjenjaca.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
     <Compile Include="VrsteGoriva.cs">
-      <DependentUpon>StovaristeModel.tt</DependentUpon>
+      <DependentUpon>ModelStovarista.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
-    <EntityDeploy Include="StovaristeModel.edmx">
+    <EntityDeploy Include="ModelStovarista.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StovaristeModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelStovarista.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="StovaristeModel.edmx.diagram">
-      <DependentUpon>StovaristeModel.edmx</DependentUpon>
+    <None Include="ModelStovarista.edmx.diagram">
+      <DependentUpon>ModelStovarista.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="StovaristeModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StovaristeModel.edmx</DependentUpon>
-      <LastGenOutput>StovaristeModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="StovaristeModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StovaristeModel.edmx</DependentUpon>
-      <LastGenOutput>StovaristeModel.cs</LastGenOutput>
-    </Content>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelStovarista.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelStovarista.edmx</DependentUpon>
+      <LastGenOutput>ModelStovarista.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelStovarista.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelStovarista.edmx</DependentUpon>
+      <LastGenOutput>ModelStovarista.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
