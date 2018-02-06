@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BFC9800A-C6F8-4F82-AF55-A61E173AF024}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Data</RootNamespace>
+    <AssemblyName>Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adrese.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Automobili.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BankovniNalozi.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BodyAndMainPart.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BrojeviVrata.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cijene.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Firme.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GodineProizvodnje.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KorisnickiNalozi.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kupci.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarkeAutomobila.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntiteta.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEntiteta.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntiteta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntiteta.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEntiteta.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModeliAutomobila.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Prodavci.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rabati.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Radnici.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoviMjenjaca.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VrsteGoriva.cs">
+      <DependentUpon>ModelEntiteta.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="ModelEntiteta.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelEntiteta.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelEntiteta.edmx.diagram">
+      <DependentUpon>ModelEntiteta.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelEntiteta.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelEntiteta.edmx</DependentUpon>
+      <LastGenOutput>ModelEntiteta.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelEntiteta.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelEntiteta.edmx</DependentUpon>
+      <LastGenOutput>ModelEntiteta.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

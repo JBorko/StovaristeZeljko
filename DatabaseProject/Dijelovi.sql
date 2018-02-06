@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[Dijelovi]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+    [EnNaziv] VARCHAR(50) NOT NULL, 
+    [SrNaziv] VARCHAR(50) NULL, 
+    [StepenOstecenja] SMALLINT NULL, 
+    [Slika] VARCHAR(50) NULL, 
+    [Automobil] INT NOT NULL,
+    [Prodavac] INT NULL, 
+    [Cijena] INT NOT NULL, 
+    CONSTRAINT DIO_AUTOMOBIL_FK FOREIGN KEY (Automobil) REFERENCES Automobili(id),
+	CONSTRAINT DIO_PRODAVAC_FK FOREIGN KEY (Prodavac) REFERENCES Prodavci(id),
+	CONSTRAINT DIO_CIJENA_FK FOREIGN KEY (Cijena) REFERENCES Cijene(id)
+)

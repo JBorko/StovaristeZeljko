@@ -1,0 +1,23 @@
+﻿CREATE TABLE [dbo].[Automobili]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+    [Boja] VARCHAR(50) NULL, 
+    [Marka] INT NOT NULL,
+	[ZapreminaMotoraCCM] INT NOT NULL, 
+    [SnagaMotoraKW] INT NOT NULL, 
+    [VrstaGoriva] INT NOT NULL, 
+    [BrojVrata] INT NOT NULL, 
+    [TipMjenjaca] INT NOT NULL, 
+    [Kilometraza] INT NOT NULL, 
+    [KodMotora] VARCHAR(50) NOT NULL, 
+    [Napomena] TEXT NULL, 
+    [Prodavac] INT NULL, 
+    [KupovnaCijena] MONEY NOT NULL, 
+    [Cijena] INT NOT NULL, 
+    CONSTRAINT AUTOMOBIL_MARKA_AUTOMOBILA_FK FOREIGN KEY (Marka) REFERENCES MarkeAutomobila (id),
+	CONSTRAINT AUTOMOBIL_VRSTA_GORIVA_FK FOREIGN KEY (VrstaGoriva) REFERENCES VrsteGoriva(id),
+	CONSTRAINT AUTOMOBIL_BROJEVI_VRATA_FK FOREIGN KEY (BrojVrata) REFERENCES BrojeviVrata(id),
+	CONSTRAINT AUTOMOBIL_TIP_MJENJACA_FK FOREIGN KEY (TipMjenjaca) REFERENCES TipoviMjenjaca(id),
+	CONSTRAINT AUTOMOBIL_PRODAVAC_FK FOREIGN KEY (Prodavac) REFERENCES Prodavci(id),
+	CONSTRAINT [AUTOMOBIL_CIJENA_FK] FOREIGN KEY ([Cijena]) REFERENCES [dbo].[Cijene] ([Id])
+)
